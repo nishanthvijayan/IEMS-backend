@@ -18,6 +18,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'ransack'
 gem "bootstrap-switch-rails" 
 gem 'simplecov'
+gem 'coveralls', require: false
 # Use Unicorn as the app server
 # gem 'unicorn'
 
