@@ -1,4 +1,19 @@
 ENV['RAILS_ENV'] ||= 'test'
+
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/spec/'
+  add_filter '/config/'
+  add_filter '/lib/'
+  add_filter '/vendor/'
+ 
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Models', 'app/models'
+  add_group 'Helpers', 'app/helpers'
+  add_group 'Mailers', 'app/mailers'
+  add_group 'Views', 'app/views'
+end
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/reporters'
@@ -31,8 +46,8 @@ end
 
 class ActionDispatch::IntegrationTest
   self.use_transactional_fixtures = false
-  Capybara.current_driver = :selenium
-  # Capybara.javascript_driver =  :poltergeist
+  # Capybara.current_driver = :selenium
+  Capybara.javascript_driver =  :poltergeist
   include Capybara::DSL
 
   def teardown

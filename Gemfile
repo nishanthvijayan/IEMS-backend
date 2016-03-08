@@ -17,6 +17,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-datepicker-rails'
 gem 'ransack'
 gem "bootstrap-switch-rails" 
+gem 'simplecov'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
