@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.2.3p173
+  - 2.2.3
 before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - "echo `phantomjs -v`"
