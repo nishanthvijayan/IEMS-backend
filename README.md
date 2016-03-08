@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/nishanthvijayan/IEMS-backend/badge.svg?branch=master)](https://coveralls.io/github/nishanthvijayan/IEMS-backend?branch=master)
+[![Build Status](https://travis-ci.org/nishanthvijayan/IEMS-backend.svg?branch=master)](https://travis-ci.org/nishanthvijayan/IEMS-backend)
 ## IEMS  
 Backend and Webportal of IIT Ropar Institute Eatery Management System.  
 A Work in Progress.  
