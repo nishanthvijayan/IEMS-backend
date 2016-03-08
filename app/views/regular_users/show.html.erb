@@ -1,0 +1,93 @@
+<h2 class="center">View Logs</h2>
+
+<!-- This list of privilages is only in dev environment -->
+<% if Rails.env.development? %>
+<div class="container center row">(
+	<h5>Admin: <b><%= if  current_user.admin? then "Yes" else "No" end%></b></h5>
+	<h5>Manager: <b><%= if  current_user.manager? then "Yes" else "No" end%></b></h5>
+)</div>
+<% end %>
+
+<br><br>
+<div class="panel  panel-default">
+	<div class="panel-heading">Filters</div>
+	<div class="panel-body">
+		<form class="form-inline">
+			<div class="form-group col-lg-3">
+				<div class="input-daterange input-group" id="datepicker">
+					<input type="text" class="input-sm form-control" name="start" id="start" placeholder="Start Date" />
+					<span class="input-group-addon">to</span>
+					<input type="text" class="input-sm form-control" name="end" id="end" placeholder="End Date"/>
+				</div>
+			</div>
+			
+			<div class="select-user form-group col-lg-6">
+				<div class="input-group select-group">
+					<span class="input-group-addon">
+						<input type="checkbox" aria-label="...">
+					</span>
+					<select class="form-control" id="regular_users">
+						<% if @regular_user.admin? || @regular_user.manager?%>
+						<option>All Users</option>
+						<% end %>
+						<% @all_regular_users.each do |regular_user| %>
+							<%= content_tag :option,regular_user.name, value: regular_user.id %>
+						<% end %>
+					</select>
+				</div>
+				<div class="input-group select-group">
+					<span class="input-group-addon">
+						<input type="checkbox" aria-label="...">
+					</span>
+					<select class="form-control" id="guest_users">
+						<option>All Guests</option>
+						<% @all_guest_users.each do |guest_user| %>
+							<%= content_tag :option,guest_user.name, value: guest_user.id %>
+						<% end %>
+					</select>
+				</div>
+			</div>
+
+			<div class="checkbox col-lg-3">
+		    		<label><input type="checkbox">Breakfast</label>
+		    		<label><input type="checkbox">Lunch</label>
+		    		<label><input type="checkbox">Dinner</label>
+		    		<label><input type="checkbox">Special</label>
+		  	</div>
+			
+	  	</form>
+  	</div>
+</div>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>	
+			<th>#</th>
+			<th>Photo</th>
+			<th>Date</th>
+			<th>Food</th>
+			<th>Price</th>
+			<% if @regular_user.admin? || @regular_user.manager?%>
+				<th>Billed User</th>
+			<% end %>
+			<th>Guest Name</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @transactions.each_with_index do |transaction, index| %>
+		<tr>	
+			<td><b><%= index+1 %></b></td>
+			<td><span class="glyphicon glyphicon-camera"></span></td>
+			<td><%= transaction.date.strftime("%a %d %B, %Y") %></td>
+			<td><%= full_food_type(transaction.food_type) %></td>
+			<td><%= transaction.price %></td>
+			<% if @regular_user.admin? || @regular_user.manager?%>
+				<td><%= transaction.regular_user.name %></td>
+			<% end %>
+			<% if transaction.guest_transaction? %>
+				<td><%= transaction.guest_user.name %></td>
+			<% end %>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IEMS</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+		<!--[if lt IE 9]>
+			<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<%= render 'layouts/header' %>
+		<% flash.each do |message_type,message_content| %>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="alert alert-<%= message_type %> alert-dismissable"> 
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<%= message_content %>
+					</div>
+
+				</div>
+			</div>
+		<%end%>
+		
+		<div class="container <%= controller.controller_name %>">
+			<%= yield %>
+		</div>
+
+	</body>
+</html>

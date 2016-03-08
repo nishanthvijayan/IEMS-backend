@@ -1,0 +1,67 @@
+<h2 class="center">View Guest Bookings</h2>
+
+<div class="container center row">(
+	<h5>Admin: <b><%= if  current_user.admin? then "Yes" else "No" end%></b></h5>
+	<h5>Manager: <b><%= if  current_user.manager? then "Yes" else "No" end%></b></h5>
+)</div>
+<br><br>
+<div class="panel  panel-default">
+	<div class="panel-heading">Filters</div>
+	<div class="panel-body">
+		<form class="form-inline">
+			<div class="form-group col-lg-6">
+				<div class="input-daterange input-group" id="datepicker">
+					<input type="text" class="input-sm form-control" name="start" id="start" placeholder="Start Date" />
+					<span class="input-group-addon">to</span>
+					<input type="text" class="input-sm form-control" name="end" id="end" placeholder="End Date"/>
+				</div>
+			</div>
+			
+			<div class="select-user form-group col-lg-6">
+				<div class="input-group select-group">
+					<span class="input-group-addon">
+						<input type="checkbox" aria-label="...">
+					</span>
+					<select class="form-control" id="regular_users">
+						<% if current_user.admin? || current_user.manager? %>
+						<option>All Users</option>
+						<% end %>
+						<% @regular_users.each do |regular_user| %>
+							<%= content_tag :option,regular_user.name, value: regular_user.id %>
+						<% end %>
+					</select>
+				</div>
+			</div>
+			
+	  	</form>
+  	</div>
+</div>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>	
+			<th>#</th>
+			<th>Name</th>
+			<th>From Date</th>
+			<th>To Date</th>
+			<% if current_user.admin? || current_user.manager?%>
+				<th>Host</th>
+			<% end %>
+			<th>Details</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @guest_users.each_with_index do |guest_user, index| %>
+		<tr>	
+			<td><b><%= index+1 %></b></td>
+			<td><%= guest_user.name %></td>
+			<td><%= guest_user.from_date.strftime("%a %d %B, %Y") %></td>
+			<td><%= guest_user.to_date.strftime("%a %d %B, %Y") %></td>
+			<% if current_user.admin? || current_user.manager?%>
+				<td><%= guest_user.regular_user.name %></td>
+			<% end %>
+			<td><%= truncate(guest_user.details) %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

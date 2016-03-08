@@ -1,0 +1,34 @@
+require 'test_helper'
+
+class RegularUserEditTest < ActionDispatch::IntegrationTest
+  
+  def setup
+    @regular_user = RegularUser.create( name: "TestUser", email: "testregular_user@gmail.com", password: "password", password_confirmation: "password" )
+  end
+
+  test "login and make unsuccessful edit" do
+    log_in_with "testregular_user@gmail.com", "password"
+    click_link("TestUser")
+    click_link("Settings")
+    assert page.has_content?("Edit Details"), "Edit page was not rendered on selecting Settings link"
+    fill_in( 'regular_user[name]', :with => ' ' )
+    click_button("Save Changes")
+    assert page.has_content?("Edit Details"), "Edit page was not rendered on submitting invalid data"
+    assert page.has_content?("The form contains"), "Error messages were not displayed on submitting invalid data"
+  end
+
+  test "login and make successful edit and verify successful edit" do
+    log_in_with "testregular_user@gmail.com", "password"
+    click_link("TestUser")
+    click_link("Settings")
+    assert page.has_content?("Edit Details"), "Edit page was not rendered on selecting Settings link"
+    fill_in( 'regular_user[name]', :with => 'Changed Name' )
+    fill_in( 'regular_user[email]', :with => ' changed@gmail.com' )
+    click_button("Save Changes")
+
+    page.has_content?("Profile updated successfully")
+    page.has_content?("Breakfast")
+    page.has_content?("Changed Name")
+  end
+
+end

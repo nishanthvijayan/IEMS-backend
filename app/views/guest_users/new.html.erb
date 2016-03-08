@@ -1,0 +1,11 @@
+<br><br><br>
+
+<div class="row col-md-6 col-md-offset-3 panel panel-default">
+	<h2 class="center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Add Guest Booking</h2>
+	<div class="panel-body">
+		<%= form_for(@guest_user) do |f| %>
+			<%= render 'guest_fields', f: f %>		
+			<%= f.submit "Book Guest", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
