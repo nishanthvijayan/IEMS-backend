@@ -1,0 +1,15 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.2.3p173
+before_install:
+  - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
+  - "echo `phantomjs -v`"
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+before_script:
+  - RAILS_ENV=test bundle exec rake db:drop db:create db:migrate
+script:
+  - 'bundle exec rake test'
