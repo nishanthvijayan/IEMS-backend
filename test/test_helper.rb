@@ -19,33 +19,34 @@ Minitest::Reporters.use!(
   ENV,
   Minitest.backtrace_filter
 )
-class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
+module ActiveSupport
+  class TestCase
+    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+    fixtures :all
 
-  # Add more helper methods to be used by all tests here...
-  def log_in_as (user, options = {})
-    password = options[:password] || 'password'
+    # Add more helper methods to be used by all tests here...
+    def log_in_as(user)
       session[:regular_user_id] = user.id
+    end
   end
-
 end
 
-class ActionDispatch::IntegrationTest
-  self.use_transactional_fixtures = false
-  # Capybara.current_driver = :selenium
-  Capybara.javascript_driver =  :poltergeist
-  include Capybara::DSL
+module ActionDispatch
+  class IntegrationTest
+    self.use_transactional_fixtures = true
+    # Capybara.current_driver = :selenium
+    Capybara.javascript_driver = :poltergeist
+    include Capybara::DSL
 
-  def teardown
-    Capybara.reset_sessions!
-  end
+    def teardown
+      Capybara.reset_sessions!
+    end
 
-  def log_in_with( email, password )
-    visit(login_path)
-    fill_in( 'session[email]', :with => email )
-    fill_in( 'session[password]', :with => password )
-    click_button("Log In")
+    def log_in_with(email, password)
+      visit(login_path)
+      fill_in('session[email]', with: email)
+      fill_in('session[password]', with: password)
+      click_button('Log In')
+    end
   end
-  
 end

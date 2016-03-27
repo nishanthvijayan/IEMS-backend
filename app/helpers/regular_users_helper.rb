@@ -1,15 +1,14 @@
 module RegularUsersHelper
-
-def full_food_type(short_food_type)
-  if short_food_type == "B"
-    return "Breakfast"
-  elsif short_food_type == "L"
-      return "Lunch"
-  elsif short_food_type == "D"
-      return "Dinner"
-  else
-    return "Special"
+  def full_food_type(short_food_type)
+    case short_food_type
+    when 'B'
+      'Breakfast'
+    when 'L'
+      'Lunch'
+    when 'D'
+      'Dinner'
+    when 'S'
+      'Special'
+    end
   end
-end
-
 end
