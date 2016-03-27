@@ -1,0 +1,6 @@
+guest_one:
+  id: 1
+  name: 'Bruce Wayne'
+  regular_user_id: 2
+  from_date: 'Fri, 24 Oct 2014'
+  to_date: 'Wed, 10 Jun 2015'

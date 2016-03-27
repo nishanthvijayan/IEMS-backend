@@ -44,7 +44,7 @@ class GuestUsersController < ApplicationController
       @guest_user =  GuestUser.find(params[:id])
       @host_user = @guest_user.regular_user
       unless current_user?(@host_user)
-        flash[:danger] = "You are not authorized to view that page"
+        flash[:danger] = "You are not authorized to access that page"
         redirect_to current_user
       end
     end

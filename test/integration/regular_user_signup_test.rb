@@ -11,6 +11,7 @@ class RegularUserSignupTest < ActionDispatch::IntegrationTest
       fill_in "regular_user[password_confirmation]" , :with =>  "password"
       click_button "Create my account"
     end
+    assert page.has_css?("#error_explanation")
     assert page.has_content?("Sign Up")
   end
 
@@ -23,6 +24,7 @@ class RegularUserSignupTest < ActionDispatch::IntegrationTest
       fill_in "regular_user[password_confirmation]" , :with =>  "not_password"
       click_button "Create my account"
     end
+    assert page.has_css?("#error_explanation")
     assert page.has_content?("Sign Up")
   end
 
@@ -35,6 +37,7 @@ class RegularUserSignupTest < ActionDispatch::IntegrationTest
       fill_in "regular_user[password_confirmation]" , :with =>  "password"
       click_button "Create my account"
     end
+    assert page.has_content?("Welcome to IEMS - IIT Ropar")
     assert page.has_content?("Breakfast")
   end
 

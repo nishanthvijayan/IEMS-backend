@@ -9,6 +9,11 @@ class GuestUserTest < ActiveSupport::TestCase
     assert @guest_user.valid?
   end
 
+  test "should respond to regular_user and host_user" do
+    assert_respond_to @guest_user, :regular_user
+    assert_respond_to @guest_user, :host_user
+  end
+
   test "name should not be blank" do
     @guest_user.name = "    "
     assert_not @guest_user.valid?

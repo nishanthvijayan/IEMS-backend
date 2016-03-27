@@ -3,12 +3,12 @@ require 'test_helper'
 class RegularUserEditTest < ActionDispatch::IntegrationTest
   
   def setup
-    @regular_user = RegularUser.create( name: "TestUser", email: "testregular_user@gmail.com", password: "password", password_confirmation: "password" )
+    @regular_user = regular_users(:user)
   end
 
   test "login and make unsuccessful edit" do
-    log_in_with "testregular_user@gmail.com", "password"
-    click_link("TestUser")
+    log_in_with @regular_user.email, 'password'
+    click_link( @regular_user.name)
     click_link("Settings")
     assert page.has_content?("Edit Details"), "Edit page was not rendered on selecting Settings link"
     fill_in( 'regular_user[name]', :with => ' ' )
@@ -18,8 +18,8 @@ class RegularUserEditTest < ActionDispatch::IntegrationTest
   end
 
   test "login and make successful edit and verify successful edit" do
-    log_in_with "testregular_user@gmail.com", "password"
-    click_link("TestUser")
+    log_in_with @regular_user.email, 'password'
+    click_link( @regular_user.name)
     click_link("Settings")
     assert page.has_content?("Edit Details"), "Edit page was not rendered on selecting Settings link"
     fill_in( 'regular_user[name]', :with => 'Changed Name' )
@@ -30,5 +30,4 @@ class RegularUserEditTest < ActionDispatch::IntegrationTest
     page.has_content?("Breakfast")
     page.has_content?("Changed Name")
   end
-
 end

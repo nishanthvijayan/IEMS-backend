@@ -9,6 +9,10 @@ class RegularUserTest < ActiveSupport::TestCase
     assert @regular_user.valid?
   end
 
+  test "should respond to guest_users" do
+    assert_respond_to @regular_user, :guest_users
+  end
+
   test "name should not be blank" do
     @regular_user.name = "    "
     assert_not @regular_user.valid?
