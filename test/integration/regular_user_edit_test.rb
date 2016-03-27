@@ -25,8 +25,8 @@ class RegularUserEditTest < ActionDispatch::IntegrationTest
     fill_in('regular_user[email]', with: 'changed@gmail.com')
     click_button('Save Changes')
 
-    page.has_content?('Profile updated successfully')
-    page.has_content?('Breakfast')
-    page.has_content?('Changed Name')
+    assert page.has_content?('Profile updated successfully')
+    assert page.has_content?('Breakfast')
+    assert page.has_content?('Changed Name')
   end
 end
