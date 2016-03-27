@@ -1,6 +1,5 @@
 class GuestUsersController < ApplicationController
-  before_action :logged_in_user
-  before_action :correct_user, only: [:edit, :update]
+  load_and_authorize_resource
 
   def index
     if current_user.admin? || current_user.manager?
@@ -13,8 +12,7 @@ class GuestUsersController < ApplicationController
   end
 
   def new
-    @guest_user = GuestUser.new
-    @guest_user.regular_user = current_user
+    @guest_user = GuestUser.new(regular_user: current_user)
   end
 
   def create
@@ -33,22 +31,6 @@ class GuestUsersController < ApplicationController
   end
 
   private
-
-  def logged_in_user
-    return if logged_in?
-    flash[:danger] = 'You must be logged in to access that page'
-    redirect_to login_path
-  end
-
-  def correct_user
-    @guest_user = GuestUser.find(params[:id])
-    @host_user = @guest_user.regular_user
-
-    return if current_user?(@host_user)
-
-    flash[:danger] = 'You are not authorized to access that page'
-    redirect_to current_user
-  end
 
   def guest_user_params
     params.require(:guest_user).permit(:name, :from_date, :to_date, :details)

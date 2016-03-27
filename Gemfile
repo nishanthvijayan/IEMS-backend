@@ -19,6 +19,7 @@ gem 'ransack'
 gem "bootstrap-switch-rails" 
 gem 'simplecov'
 gem 'coveralls', require: false
+gem 'cancancan', '~> 1.10'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
