@@ -16,6 +16,14 @@ class GuestUsersController < ApplicationController
   end
 
   def create
+    @guest_user = GuestUser.new(guest_user_params)
+    @guest_user.regular_user_id = current_user.id
+    if @guest_user.save
+      flash[:success] = 'Booking Successful'
+      redirect_to guest_users_path
+    else
+      render 'new'
+    end
   end
 
   def edit

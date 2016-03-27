@@ -1,3 +1,5 @@
+<%= render 'shared/error_messages',  object: @guest_user %>
+<br>
 <label>Host</label>
 <label class="form-control">
 	<%= @guest_user.regular_user.name %>
@@ -12,9 +14,9 @@
 
 <div class="form-group">
 	<div class="input-daterange input-group" id="datepicker">
-		<input type="text" class="input-sm form-control" name="start" id="start" placeholder="From Date" />
+		<%= f.text_field :from_date, class: "input-sm form-control", placeholder: "From Date" %>
 		<span class="input-group-addon">to</span>
-		<input type="text" class="input-sm form-control" name="end" id="end" placeholder="To Date"/>
+		<%= f.text_field :to_date, class: "input-sm form-control", placeholder: "To Date" %>
 	</div>
 </div>
 <br>

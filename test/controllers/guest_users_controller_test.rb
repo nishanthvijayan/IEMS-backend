@@ -13,6 +13,11 @@ class GuestUsersControllerTest < ActionController::TestCase
     assert_equal flash[:danger], 'You are not authorized to access this page. Maybe you need to sign in?'
     assert_redirected_to login_path
 
+    get :create
+    assert_not flash.empty?
+    assert_equal flash[:danger], 'You are not authorized to access this page. Maybe you need to sign in?'
+    assert_redirected_to login_path
+
     get :index
     assert_not flash.empty?
     assert_equal flash[:danger], 'You are not authorized to access this page. Maybe you need to sign in?'
