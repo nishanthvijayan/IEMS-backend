@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Guest Name</th>
+		<th>Host Name</th>
+		<th>From_Date</th>
+		<th>To_Date</th>
+		<th>Details</th>
+	</tr>
+	<% @guest_users.each do |guest| %>
+	<tr>
+		<td><%= guest.id %></td>
+	 	<td><%= guest.name %></td>
+		<td><%= guest.host_user.name %></td>
+		<td><%= guest.from_date %></td>
+		<td><%= guest.to_date %></td>
+		<td><%= guest.details %></td>
+	</tr>
+	<% end %>
+</table>

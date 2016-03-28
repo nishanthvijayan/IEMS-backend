@@ -9,6 +9,12 @@ class GuestUsersController < ApplicationController
       @guest_users = GuestUser.where(regular_user: current_user)
       @regular_users = [current_user]
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @guest_users.to_csv, filename: "#{current_user.name}-Guest-logs.csv" }
+      format.xls
+    end
   end
 
   def new

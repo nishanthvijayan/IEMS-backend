@@ -4,7 +4,14 @@
 	<h5>Admin: <b><%= if  current_user.admin? then "Yes" else "No" end%></b></h5>
 	<h5>Manager: <b><%= if  current_user.manager? then "Yes" else "No" end%></b></h5>
 )</div>
-<br><br>
+
+<div class="btn-group pull-right" role="group" aria-label="...">
+	<%= content_tag 'span', 'Export as ', class: 'export-text btn btn-success' %>
+	<%= link_to 'CSV', guest_users_path(format: 'csv'), class: 'btn btn-success' %>
+	<%= link_to 'Excel', guest_users_path(format: 'xls'), class: 'btn btn-success' %>
+</div>
+
+<br><br><br>
 <div class="panel  panel-default">
 	<div class="panel-heading">Filters</div>
 	<div class="panel-body">
