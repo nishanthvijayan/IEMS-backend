@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Guest Transaction?</th>
+		<th>Guest Name</th>
+		<th>Regular User/Host Name</th>
+		<th>Food Type</th>
+		<th>Price</th>
+		<th>Date</th>
+	</tr>
+	<% @transactions.each do |transaction| %>
+	<tr>
+		<td><%= transaction.id %></td>
+		<td><%= transaction.guest_transaction? %></td>
+	 	<td><%= transaction.guest_transaction?? transaction.guest_user.name : '-'  %></td>
+		<td><%=transaction.regular_user.name %></td>
+		<td><%=full_food_type(transaction.food_type) %></td>
+		<td><%=transaction.price %></td>
+		<td><%=transaction.date %></td>
+	</tr>
+	<% end %>
+</table>

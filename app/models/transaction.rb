@@ -10,6 +10,16 @@ class Transaction < ActiveRecord::Base
   validates :price, presence: true,
                     numericality: true
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << %w(ID Guest_Transaction? Guest_Name Regular_User Food_Type Price Date)
+      find_each do |transaction|
+        csv << [transaction.id, transaction.guest_transaction?, transaction.guest_transaction? ? transaction.guest_user.name : '-',
+                transaction.regular_user.name, transaction.food_type, transaction.price, transaction.date]
+      end
+    end
+  end
+
   def set_billed_user
     return unless guest_transaction?
     self.regular_user = guest_user.host_user

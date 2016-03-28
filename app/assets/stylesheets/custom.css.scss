@@ -91,3 +91,10 @@ input {
 .error-message{
 	color: rgb(169, 68, 66);
 }
+
+.export-text{
+	cursor: default;
+	&:hover {
+	background-color: #5cb85c;
+	}
+}

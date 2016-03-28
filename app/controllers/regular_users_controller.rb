@@ -20,6 +20,12 @@ class RegularUsersController < ApplicationController
       @all_regular_users = [current_user]
       @all_guest_users = GuestUser.where(regular_user: @regular_user)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @transactions.to_csv, filename: "#{current_user.name}-logs.csv" }
+      format.xls
+    end
   end
 
   def new
