@@ -1,5 +1,5 @@
 guest_one:
   name: 'Bruce Wayne'
   regular_user: admin
-  from_date: 'Fri, 24 Oct 2014'
-  to_date: 'Wed, 10 Jun 2015'
+  from_date: <%= 4.days.ago %>
+  to_date: <%= 3.days.from_now %>

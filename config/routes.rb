@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   resources :regular_users, path: 'users',   :only => [ :index, :show, :edit, :update, :create ]
   resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update ]
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      get 'users' => 'users#index'
+    end
+  end
 end

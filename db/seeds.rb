@@ -32,19 +32,19 @@ RegularUser.create!(name: 'Nitin Kumar',
 end
 
 GuestUser.create!(name: 'Jitin Madhu', details: Faker::Lorem.paragraph, regular_user: RegularUser.second,
-                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(50.days.ago, Date.today))
+                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
 GuestUser.create!(name: 'Himanshu Gupta', details: Faker::Lorem.paragraph, regular_user: RegularUser.first,
-                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(50.days.ago, Date.today))
+                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
 GuestUser.create!(name: 'Jainedra Mandavi', details: Faker::Lorem.paragraph, regular_user: RegularUser.second,
-                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(50.days.ago, Date.today))
+                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.from_now, 20.days.from_now))
 
 3.times do |_n|
   GuestUser.create!(name: Faker::Name.name, details: Faker::Lorem.paragraph, regular_user: RegularUser.first,
-                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(50.days.ago, Date.today))
+                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
   GuestUser.create!(name: Faker::Name.name, details: Faker::Lorem.paragraph, regular_user: RegularUser.second,
-                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(50.days.ago, Date.today))
+                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
   GuestUser.create!(name: Faker::Name.name, details: Faker::Lorem.paragraph, regular_user: RegularUser.third,
-                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(50.days.ago, Date.today))
+                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
 end
 
 Transaction.create!(food_type: 'D', date: '2016-02-20', price: 40, guest_transaction: true, guest_user: GuestUser.first)

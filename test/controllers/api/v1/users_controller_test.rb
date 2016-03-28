@@ -1,0 +1,16 @@
+require 'test_helper'
+
+module Api
+  module V1
+    class UsersControllerTest < ActionController::TestCase
+      test 'lists all users' do
+        get :index, format: :json
+        json = JSON.parse(response.body)['users']
+
+        assert_response :success
+
+        assert_equal json.length, 4
+      end
+    end
+  end
+end
