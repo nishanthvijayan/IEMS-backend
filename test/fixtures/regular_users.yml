@@ -1,5 +1,4 @@
 user:
-  id: 1
   name: Michael Example
   email: michael@example.com
   password_digest: <%= RegularUser.digest('password') %>
@@ -7,7 +6,6 @@ user:
   admin: false
 
 admin:
-  id: 2
   name: Admin Example
   email: admin@example.com
   password_digest: <%= RegularUser.digest('password') %>
@@ -15,7 +13,6 @@ admin:
   manager: false
 
 manager:
-  id: 3
   name: Manager Example
   email: manager@example.com
   password_digest: <%= RegularUser.digest('password') %>

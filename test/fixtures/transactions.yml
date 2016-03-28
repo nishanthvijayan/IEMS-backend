@@ -1,12 +1,13 @@
 regular:
-  regular_user_id: 1
+  regular_user: user
   guest_transaction: false
   food_type: 'B'
   price: 50
   date: 'Wed, 7 Jun 2015'
 
 guest:
-  guest_user_id: 1
+  guest_user: guest_one
+  regular_user: admin
   guest_transaction: true
   food_type: 'B'
   price: 50
