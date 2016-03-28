@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       get 'users' => 'users#index'
+      post 'transaction' => 'transaction#create'
     end
   end
 end
