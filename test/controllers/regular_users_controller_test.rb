@@ -42,4 +42,14 @@ class RegularUsersControllerTest < ActionController::TestCase
     @regular_user.reload
     assert_equal @regular_user.email, initial_email
   end
+
+  test 'should redirect index when logged in as non-admin user' do
+    log_in_as @other_regular_user
+
+    get :index
+
+    assert_not flash.empty?
+    assert_equal flash[:danger], 'You are not authorized to access this page.'
+    assert_redirected_to @other_regular_user
+  end
 end

@@ -4,7 +4,7 @@ class RegularUsersController < ApplicationController
 
   def index
     unless current_user.admin?
-      flash[:danger] = 'You are not authorized to access  that page.Contact admin if you require this privilage.'
+      flash[:danger] = 'You are not authorized to access this page.'
       redirect_to current_user
     end
     @regular_users = RegularUser.all.paginate(page: params[:page], per_page: 10)
