@@ -37,18 +37,20 @@ class Ability
   def not_signed_in
     cannot :manage, GuestUser
     cannot :manage, RegularUser
+    cannot :manage, Transaction
   end
 
   def signed_in_as_normal_user(user)
-    not_signed_in
-
     can :manage, RegularUser, id: user.id
     can :manage, GuestUser, regular_user_id: user.id
-    can :read, GuestUser
+    can :read, Transaction, regular_user_id: user.id
   end
 
   def signed_in_as_manager(user)
     signed_in_as_normal_user(user)
+    can :read, GuestUser
+    can :read, RegularUser
+    can :read, Transaction
   end
 
   def signed_in_as_admin(user)
