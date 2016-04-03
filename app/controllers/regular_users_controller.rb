@@ -6,20 +6,15 @@ class RegularUsersController < ApplicationController
     unless current_user.admin?
       flash[:danger] = 'You are not authorized to access this page.'
       redirect_to current_user
+      return
     end
     @regular_users = RegularUser.all.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    if current_user.admin? || current_user.manager?
-      @transactions = Transaction.all
-      @all_regular_users = RegularUser.all
-      @all_guest_users = GuestUser.all
-    else
-      @transactions = Transaction.where(regular_user: @regular_user)
-      @all_regular_users = [current_user]
-      @all_guest_users = GuestUser.where(regular_user: @regular_user)
-    end
+    @transactions = Transaction.accessible_by(current_ability)
+    @guest_users = GuestUser.accessible_by(current_ability)
+    @regular_users = RegularUser.accessible_by(current_ability)
 
     respond_to do |format|
       format.html

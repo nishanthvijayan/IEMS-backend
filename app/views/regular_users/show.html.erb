@@ -36,7 +36,7 @@
 						<% if @regular_user.admin? || @regular_user.manager?%>
 						<option>All Users</option>
 						<% end %>
-						<% @all_regular_users.each do |regular_user| %>
+						<% @regular_users.each do |regular_user| %>
 							<%= content_tag :option,regular_user.name, value: regular_user.id %>
 						<% end %>
 					</select>
@@ -47,7 +47,7 @@
 					</span>
 					<select class="form-control" id="guest_users">
 						<option>All Guests</option>
-						<% @all_guest_users.each do |guest_user| %>
+						<% @guest_users.each do |guest_user| %>
 							<%= content_tag :option,guest_user.name, value: guest_user.id %>
 						<% end %>
 					</select>

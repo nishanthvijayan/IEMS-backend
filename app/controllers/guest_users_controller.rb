@@ -2,13 +2,8 @@ class GuestUsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if current_user.admin? || current_user.manager?
-      @guest_users = GuestUser.all
-      @regular_users = RegularUser.all
-    else
-      @guest_users = GuestUser.where(regular_user: current_user)
-      @regular_users = [current_user]
-    end
+    @guest_users = GuestUser.accessible_by(current_ability)
+    @regular_users = RegularUser.accessible_by(current_ability)
 
     respond_to do |format|
       format.html
