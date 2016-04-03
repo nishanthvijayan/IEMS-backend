@@ -9,7 +9,7 @@ module Api
 
         assert_response :success
 
-        assert_equal json.length, 4
+        assert_equal json.length, 6
         assert_equal json[0].keys, %w(id name guest)
       end
     end

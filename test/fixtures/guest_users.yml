@@ -3,3 +3,15 @@ guest_one:
   regular_user: admin
   from_date: <%= 4.days.ago %>
   to_date: <%= 3.days.from_now %>
+
+guest_two:
+  name: 'Clark Kent'
+  regular_user: manager
+  from_date: <%= 4.days.ago %>
+  to_date: <%= 3.days.from_now %>
+
+guest_three:
+  name: 'Oliver Queen'
+  regular_user: user
+  from_date: <%= 4.days.ago %>
+  to_date: <%= 3.days.from_now %>
