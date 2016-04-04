@@ -31,9 +31,12 @@ class GuestUsersController < ApplicationController
   end
 
   def update
-    if @guest_user.update_attributes(regular_user_params)
+    if Date.parse(guest_user_params[:from_date]) <= Date.current
+      flash[:danger] = 'Updating details of guests is allowed only for guests who have not reached the campus yet'
+      redirect_to guest_users_path
+    elsif @guest_user.update_attributes(guest_user_params)
       flash[:success] = 'Guest details updated successfully'
-      redirect_to guests_path
+      redirect_to guest_users_path
     else
       render 'edit'
     end
