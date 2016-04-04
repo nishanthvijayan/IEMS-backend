@@ -1,8 +1,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# All the current data is only for demo purposes and would obviously be removed before final deployment
 
 RegularUser.create!(name: 'Nishanth Vijayan',
-                    email: 'nishanththegr8@gmail.com',
+                    email: 'nishanth@gmail.com',
                     password: 'nishanthpassword',
                     password_confirmation: 'nishanthpassword',
                     admin: true,
@@ -16,9 +17,9 @@ RegularUser.create!(name: 'Abhishek Tiwari',
                     manager: true)
 
 RegularUser.create!(name: 'Nitin Kumar',
-                    email: 'nithinkumar@gmail.com',
-                    password: 'nithinpassword',
-                    password_confirmation: 'nithinpassword',
+                    email: 'nitinkumar@gmail.com',
+                    password: 'nitinpassword',
+                    password_confirmation: 'nitinpassword',
                     admin: false,
                     manager: false)
 
