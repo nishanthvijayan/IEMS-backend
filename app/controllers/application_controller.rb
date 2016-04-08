@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     message = exception.message
-    message << ' Maybe you need to sign in?' if !current_user
+    message << ' Maybe you need to sign in?' unless current_user
     redirect_to login_path, danger: message
   end
 end

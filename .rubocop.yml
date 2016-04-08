@@ -1,6 +1,326 @@
 Rails:
   Enabled: true
-inherit_from: .rubocop_todo.yml
+
+Lint/DuplicatedKey:
+  Enabled: true
+
+Lint/IneffectiveAccessModifier:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 75
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 208
+
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 56
+
+# Configuration parameters: CountComments.
+Metrics/ModuleLength:
+  Max: 256
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Performance/StringReplacement:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, Include.
+# SupportedStyles: action, filter
+Rails/ActionFilter:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: strict, flexible
+Rails/Date:
+  Enabled: false
+
+Rails/Delegate:
+  Enabled: true
+
+# Configuration parameters: Include.
+Rails/FindBy:
+  Enabled: true
+
+# Configuration parameters: Include.
+Rails/FindEach:
+  Enabled: true
+
+Rails/PluralizationGrammar:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: strict, flexible
+Rails/TimeZone:
+  Enabled: true
+
+# Configuration parameters: Include.
+Rails/Validation:
+  Enabled: true
+
+Style/AccessorMethodName:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: is_a?, kind_of?
+Style/ClassCheck:
+  Enabled: true
+
+Style/ClassVars:
+  Enabled: true
+
+Style/ClosingParenthesisIndentation:
+  Enabled: true
+
+Style/ColonMethodCall:
+  Enabled: true
+
+Style/CommentAnnotation:
+  Enabled: true
+
+Style/CommentIndentation:
+  Enabled: true
+
+# Configuration parameters: SingleLineConditionsOnly.
+Style/ConditionalAssignment:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: leading, trailing
+Style/DotPosition:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: true
+
+Style/ElseAlignment:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: empty_lines, no_empty_lines
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+# Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
+Style/ExtraSpacing:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: consistent, special_for_inner_method_call, special_for_inner_method_call_in_parentheses
+Style/FirstParameterIndentation:
+  Enabled: false
+
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Enabled: true
+
+Style/IdenticalConditionalBranches:
+  Enabled: true
+
+Style/IfInsideElse:
+  Enabled: true
+
+# Configuration parameters: MaxLineLength.
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Style/IndentArray:
+  Enabled: false
+
+# Configuration parameters: IndentationWidth.
+Style/IndentAssignment:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_braces
+Style/IndentHash:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: normal, rails
+Style/IndentationConsistency:
+  Enabled: true
+
+# Configuration parameters: Width.
+Style/IndentationWidth:
+  Enabled: true
+
+Style/InfiniteLoop:
+  Enabled: true
+
+Style/LeadingCommentSpace:
+  Enabled: true
+
+Style/LineEndConcatenation:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: require_parentheses, require_no_parentheses, require_no_parentheses_except_multiline
+Style/MethodDefParentheses:
+  Enabled: false
+
+Style/MultilineBlockLayout:
+  Enabled: true
+
+# SupportedStyles: aligned, indented
+Style/MultilineMethodCallIndentation:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: aligned, indented
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: true
+
+Style/NegatedIf:
+  Enabled: true
+
+Style/NestedParenthesizedCalls:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, MinBodyLength, SupportedStyles.
+# SupportedStyles: skip_modifier_ifs, always
+Style/Next:
+  Enabled: false
+
+Style/NumericLiterals:
+  MinDigits: 15
+
+Style/OptionalArguments:
+  Enabled: true
+
+# Configuration parameters: AllowSafeAssignment.
+Style/ParenthesesAroundCondition:
+  Enabled: true
+
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  Enabled: true
+
+# Configuration parameters: NamePrefix, NamePrefixBlacklist, NameWhitelist.
+# NamePrefix: is_, has_, have_
+# NamePrefixBlacklist: is_, has_, have_
+# NameWhitelist: is_a?
+Style/PredicateName:
+  Enabled: true
+
+# Configuration parameters: SupportedStyles.
+# SupportedStyles: compact, exploded
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Style/RedundantBegin:
+  Enabled: true
+
+Style/RedundantParentheses:
+  Enabled: true
+
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
+  Enabled: true
+
+Style/RedundantSelf:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
+# SupportedStyles: slashes, percent_r, mixed
+Style/RegexpLiteral:
+  Enabled: true
+
+Style/SelfAssignment:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: only_raise, only_fail, semantic
+Style/SignalException:
+  Enabled: true
+
+# Configuration parameters: AllowIfMethodIsEmpty.
+Style/SingleLineMethods:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyleInsidePipes, SupportedStyles.
+# SupportedStyles: space, no_space
+Style/SpaceAroundBlockParameters:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_spaceefault:
+  Enabled: false
+
+# Configuration parameters: AllowForAlignment.
+Style/SpaceAroundOperators:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_space
+Style/SpaceBeforeBlockBraces:
+  Enabled: false
+
+# Configuration parameters: AllowForAlignment.
+Style/SpaceBeforeFirstArg:
+  Enabled: true
+
+# Cop supports --auto-correct.
+Style/SpaceBeforeSemicolon:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+# SupportedStyles: space, no_space
+Style/SpaceInsideBlockBraces:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
+# SupportedStyles: space, no_space
+Style/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: space, no_space
+Style/SpaceInsideStringInterpolation:
+  Enabled: true
+
+# Configuration parameters: IgnoredMethods.
+# IgnoredMethods: respond_to
+Style/SymbolProc:
+  Enabled: true
+
+Style/Tab:
+  Enabled: true
+
+# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
+# SupportedStyles: comma, consistent_comma, no_comma
+Style/TrailingCommaInLiteral:
+  Enabled: true
+
+Style/UnneededInterpolation:
+  Enabled: true
+
+# Configuration parameters: SupportedStyles, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  EnforcedStyle: percent
+  MinSize: 3
+
+Style/ZeroLengthPredicate:
+  Enabled: true
 
 Style/HashSyntax:
   Enabled: true
@@ -101,7 +421,6 @@ Metrics/ClassLength:
 Style/BracesAroundHashParameters:
   Enabled: true
 
-#
 Style/CaseEquality:
   Enabled: true
 
