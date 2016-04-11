@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = RegularUser.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password].downcase)
       log_in_user(user)
-      redirect_to user
+      redirect_to regular_user_transactions_path(regular_user_id: user.id)
     else
       flash.now[:danger] = 'Invalid Credentials'
       render 'new'
@@ -24,6 +24,6 @@ class SessionsController < ApplicationController
   private
 
   def logged_in
-    redirect_to current_user if logged_in?
+    redirect_to regular_user_transactions_path(regular_user_id: current_user.id) if logged_in?
   end
 end

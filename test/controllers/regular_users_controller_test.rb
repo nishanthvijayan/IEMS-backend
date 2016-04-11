@@ -50,6 +50,6 @@ class RegularUsersControllerTest < ActionController::TestCase
 
     assert_not flash.empty?
     assert_equal flash[:danger], 'You are not authorized to access this page.'
-    assert_redirected_to @other_regular_user
+    assert_redirected_to regular_user_transactions_path(regular_user_id: @other_regular_user.id)
   end
 end

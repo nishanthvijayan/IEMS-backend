@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy' 
 
-  resources :regular_users, path: 'users',   :only => [ :index, :show, :edit, :update, :create ]
+  resources :regular_users, path: 'users',   :only => [ :index, :edit, :update, :create ] do
+    resources :transactions, :only => [:index]
+  end
   resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update ]
 
   namespace :api, defaults: {format: 'json'} do

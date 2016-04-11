@@ -5,24 +5,11 @@ class RegularUsersController < ApplicationController
   def index
     unless current_user.admin?
       flash[:danger] = 'You are not authorized to access this page.'
-      redirect_to current_user
+      redirect_to regular_user_transactions_path(regular_user_id: current_user.id)
       return
     end
     @q = RegularUser.ransack(params[:q])
     @regular_users = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
-  end
-
-  def show
-    @q = Transaction.accessible_by(current_ability).ransack(params[:q])
-    @transactions = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
-    @guest_users = GuestUser.accessible_by(current_ability)
-    @regular_users = RegularUser.accessible_by(current_ability)
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @transactions.to_csv, filename: "#{current_user.name}-logs.csv" }
-      format.xls
-    end
   end
 
   def new
@@ -34,7 +21,7 @@ class RegularUsersController < ApplicationController
     if @regular_user.save
       log_in_user @regular_user
       flash[:success] = 'Welcome to IEMS - IIT Ropar'
-      redirect_to @regular_user
+      redirect_to regular_user_transactions_path(regular_user_id: @regular_user.id)
     else
       render 'new'
     end
@@ -46,7 +33,7 @@ class RegularUsersController < ApplicationController
   def update
     if @regular_user.update_attributes(regular_user_params)
       flash[:success] = 'Profile updated successfully'
-      redirect_to @regular_user
+      redirect_to regular_user_transactions_path(regular_user_id: @regular_user.id)
     else
       render 'edit'
     end
