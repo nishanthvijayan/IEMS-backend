@@ -2,7 +2,8 @@ class GuestUsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @guest_users = GuestUser.accessible_by(current_ability)
+    @q = GuestUser.accessible_by(current_ability).ransack(params[:q])
+    @guest_users = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @regular_users = RegularUser.accessible_by(current_ability)
 
     respond_to do |format|

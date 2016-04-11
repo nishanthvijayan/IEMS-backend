@@ -70,13 +70,13 @@
 		<tr>	
 			<th>#</th>
 			<th>Photo</th>
-			<th>Date</th>
+			<th><%= sort_link(@q, :date, 'Date', default_order: :desc) %></th>
 			<th>Food</th>
-			<th>Price</th>
+			<th><%= sort_link(@q, :price, 'Price', default_order: :desc) %></th>
 			<% if @regular_user.admin? || @regular_user.manager?%>
-				<th>Billed User</th>
+				<th><%= sort_link(@q, :regular_user_name, 'Billed User', default_order: :asc) %></th>
 			<% end %>
-			<th>Guest Name</th>
+			<th><%= sort_link(@q, :guest_user_name, 'Guest Name', default_order: :asc) %></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -97,3 +97,7 @@
 	<% end %>
 	</tbody>
 </table>
+
+<div class="center">
+	<%= will_paginate @transactions %>
+</div>

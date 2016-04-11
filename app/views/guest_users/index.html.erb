@@ -48,11 +48,11 @@
 	<thead>
 		<tr>	
 			<th>#</th>
-			<th>Name</th>
-			<th>From Date</th>
-			<th>To Date</th>
+			<th><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
+			<th><%= sort_link(@q, :from_date, 'From Date', default_order: :desc) %></th>
+			<th><%= sort_link(@q, :to_date, 'To Date', default_order: :desc) %></th>
 			<% if current_user.admin? || current_user.manager?%>
-				<th>Host</th>
+				<th><%= sort_link(@q, :regular_user_name, 'Host', default_order: :asc) %></th>
 			<% end %>
 			<th>Details</th>
 		</tr>
@@ -72,3 +72,7 @@
 	<% end %>
 	</tbody>
 </table>
+
+<div class="center">
+	<%= will_paginate %>
+</div>

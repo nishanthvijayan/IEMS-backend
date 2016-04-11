@@ -8,11 +8,13 @@ class RegularUsersController < ApplicationController
       redirect_to current_user
       return
     end
-    @regular_users = RegularUser.all.paginate(page: params[:page], per_page: 10)
+    @q = RegularUser.ransack(params[:q])
+    @regular_users = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @transactions = Transaction.accessible_by(current_ability)
+    @q = Transaction.accessible_by(current_ability).ransack(params[:q])
+    @transactions = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @guest_users = GuestUser.accessible_by(current_ability)
     @regular_users = RegularUser.accessible_by(current_ability)
 

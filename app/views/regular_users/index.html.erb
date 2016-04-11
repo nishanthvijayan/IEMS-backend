@@ -2,8 +2,8 @@
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>	
-			<th>Name</th>
-			<th>Email</th>
+			<th><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
+			<th><%= sort_link(@q, :email, 'Email', default_order: :asc) %></th>
 			<th>Privilages</th>
 			<th>Actions</th>
 		</tr>
