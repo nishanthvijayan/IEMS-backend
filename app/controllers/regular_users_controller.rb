@@ -39,9 +39,28 @@ class RegularUsersController < ApplicationController
     end
   end
 
+  def destroy
+    @regular_user.destroy
+    flash[:success] = "#{@regular_user.name}'s account was deleted successfully"
+    redirect_to regular_users_path
+  end
+
+  def manage
+    if @regular_user.update_attributes(regular_user_privilege_params)
+      flash[:success] = 'User privileges updated successfully'
+      redirect_to regular_users_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def regular_user_params
     params.require(:regular_user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def regular_user_privilege_params
+    params.require(:regular_user).permit(:admin, :manager)
   end
 end

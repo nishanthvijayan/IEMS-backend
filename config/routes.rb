@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy' 
 
-  resources :regular_users, path: 'users',   :only => [ :index, :edit, :update, :create ] do
+  resources :regular_users, path: 'users',   :only => [ :index, :edit, :update, :create, :destroy ] do
+
+    member do
+      patch 'manage'
+    end
+
     resources :transactions, :only => [:index]
   end
   resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update ]

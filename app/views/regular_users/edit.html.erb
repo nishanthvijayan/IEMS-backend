@@ -8,4 +8,17 @@
 			<%= f.submit "Save Changes", class: "btn btn-primary" %>
 		<% end %>
 	</div>
+
+    <% if current_user.admin? %>
+      <hr>
+      <h3 class="center">Edit Privileges</h3>
+      <div class="panel-body">
+        <%= form_for @regular_user, url: manage_regular_user_path(@regular_user), method: :patch do |f|  %>
+          <%= render 'shared/error_messages', object: @regular_user %>
+          <label class="col-md-6 center input-lg"><%= f.check_box(:admin) %>Admin</label>
+          <label class="col-md-6 center input-lg"><%= f.check_box(:manager) %>Manager</label>
+          <%= f.submit "Update Privileges", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <% end %>
 </div>
