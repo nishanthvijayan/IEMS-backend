@@ -1,7 +1,9 @@
 $(document).ready(function(){
-	$(' .input-daterange').datepicker({
+	$('.input-daterange').datepicker({
 	    orientation: "bottom auto",
-	    format: 'dd/mm/yyyy'
+	    format: 'dd/mm/yyyy',
+	    todayBtn: "linked",
+	    clearBtn: true
 	});
 	$.fn.bootstrapSwitch.defaults.onText = 'Yes';
 	$.fn.bootstrapSwitch.defaults.offText = 'No';
