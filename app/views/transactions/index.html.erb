@@ -59,6 +59,33 @@
   	</div>
 </div>
 
+<div class="panel  panel-default">
+	<div class="panel-heading">Stats</div>
+	<div class="panel-body row">
+		<div class="col-lg-4">
+			<div id="cal-heatmap"></div>
+		</div>
+
+		<div class="col-lg-2 col-lg-offset-1">
+			<canvas id="guestChart"></canvas>
+			<ul class="legends pull-left">
+				<li id="legend-regular"></li>
+				<li id="legend-guest"></li>
+			</ul>
+		</div>
+
+		<div class="col-lg-2 col-lg-offset-1">
+			<canvas id="foodChart"></canvas>
+			<ul class="legends pull-left">
+				<li id="legend-breakfast"></li>
+				<li id="legend-lunch"></li>
+				<li id="legend-dinner"></li>
+				<li id="legend-special"></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>	
@@ -95,3 +122,123 @@
 <div class="center">
 	<%= will_paginate @transactions %>
 </div>
+
+<script type="text/javascript">
+
+	var parser = function(data) {
+		var stats = {};
+		for (var d in data) {
+			stats[data[d].date] = 1;
+		}
+		return stats;
+	};
+
+	var cal = new CalHeatMap();
+	cal.init({
+		data: window.location.href.replace(window.location.pathname,window.location.pathname+'.json'),
+		afterLoadData: parser,
+		domain: "month",
+		subDomain: "day",
+		range: 4,
+		itemName: ["entry", "entries"],
+		start: new Date(<%= 100.days.ago.to_i  * 1000 %>),
+		cellSize: 17,
+		domainGutter: 5,
+		domainMargin: 5
+	});
+
+	var createUserTypeChart = function(){
+		// Get context with jQuery - using jQuery's .get() method.
+		var guest_ctx = $("#guestChart").get(0).getContext("2d");
+
+		$.get( window.location.href.replace(window.location.pathname,window.location.pathname+'.json'), function( response ) {
+			var guestCount = 0;
+			var regularCount = 0;
+
+			for (var i in response) {
+				if (response[i].guest_transaction){
+					guestCount += 1;
+				}
+				else{
+					regularCount += 1;
+				}
+			}
+
+			var doughnutData = [
+				{
+				  value: guestCount,
+				  color:"#F7464A",
+				  highlight: "#FF5A5E",
+				  label: "Guests"
+				},
+				{
+				  value: regularCount,
+				  color: "#46BFBD",
+				  highlight: "#5AD3D1",
+				  label: "Regular"
+				}
+			];
+			var myDoughnutChart = new Chart(guest_ctx).Doughnut(doughnutData);
+			$("#legend-guest").append("Guest: "+guestCount);
+			$("#legend-regular").append("Regular: "+regularCount);
+		});
+	};
+
+	var createFoodTypeChart = function(){
+		// Get context with jQuery - using jQuery's .get() method.
+		var food_ctx = $("#foodChart").get(0).getContext("2d");
+
+		$.get( window.location.href.replace(window.location.pathname,window.location.pathname+'.json'), function( response ) {
+			var breakfastCount = 0;
+			var lunchCount = 0;
+			var dinnerCount = 0;
+			var specialCount = 0;
+
+			for (var i in response) {
+				if (response[i].food_type == 'B'){
+					breakfastCount += 1;
+				} else if (response[i].food_type == 'L'){
+					lunchCount += 1;
+				} else if (response[i].food_type == 'D'){
+					dinnerCount += 1;
+				} else if (response[i].food_type == 'S'){
+					specialCount += 1;
+				}
+			}
+
+			var doughnutData = [
+				{
+				  value: breakfastCount,
+				  color:"#8bc34a",
+				  highlight: "#aed581",
+				  label: "Breakfast"
+				},
+				{
+				  value: lunchCount,
+				  color: "#ff4081",
+				  highlight: "#ff80ab",
+				  label: "Lunch"
+				},
+				{
+				  value: dinnerCount,
+				  color: "#FDB45C",
+				  highlight: "#FFC870",
+				  label: "Dinner"
+				},
+				{
+				  value: specialCount,
+				  color: "#949FB1",
+				  highlight: "#A8B3C5",
+				  label: "Special"
+				}
+			];
+			var myDoughnutChart = new Chart(food_ctx).Doughnut(doughnutData);
+			 $("#legend-breakfast").append("Breakfast: "+ breakfastCount);
+			 $("#legend-lunch").append("Lunch: "+ lunchCount);
+			 $("#legend-dinner").append("Dinner: "+ dinnerCount);
+			 $("#legend-special").append("Special: "+ specialCount);
+		});
+	};
+	createUserTypeChart();
+	createFoodTypeChart();
+</script>
