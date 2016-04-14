@@ -11,6 +11,7 @@ class TransactionsController < ApplicationController
       format.html
       format.csv { send_data @transactions.to_csv, filename: "#{current_user.name}-logs.csv" }
       format.xls
+      format.json { render json: @q.result(distinct: true), root: false}
     end
   end
 end

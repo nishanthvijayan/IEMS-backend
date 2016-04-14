@@ -6,7 +6,7 @@ module Api
       def create
         @transaction = Transaction.new(transaction_params)
         if @transaction.save
-          render json: @transaction, status: 201
+          render json: @transaction, status: 201, serializer: nil
         else
           render json: { 'status' => 'error', 'message' => @transaction.errors.full_messages }, status: 500
         end
