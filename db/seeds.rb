@@ -33,25 +33,22 @@ RegularUser.create!(name: 'Nitin Kumar',
 end
 
 GuestUser.create!(name: 'Jitin Madhu', details: Faker::Lorem.paragraph, regular_user: RegularUser.second,
-                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
+                  from_date: Faker::Date.between(20.days.ago, Date.today), to_date: Faker::Date.between(Date.today, 20.days.from_now))
 GuestUser.create!(name: 'Himanshu Gupta', details: Faker::Lorem.paragraph, regular_user: RegularUser.first,
-                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
+                  from_date: Faker::Date.between(20.days.ago, Date.today), to_date: Faker::Date.between(Date.today, 20.days.from_now))
 GuestUser.create!(name: 'Jainedra Mandavi', details: Faker::Lorem.paragraph, regular_user: RegularUser.second,
-                  from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.from_now, 20.days.from_now))
+                  from_date: Faker::Date.between(20.days.ago, Date.today), to_date: Faker::Date.between(Date.today, 20.days.from_now))
 
 3.times do |_n|
   GuestUser.create!(name: Faker::Name.name, details: Faker::Lorem.paragraph, regular_user: RegularUser.first,
-                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
+                    from_date: Faker::Date.between(20.days.ago, Date.today), to_date: Faker::Date.between(Date.today, 20.days.from_now))
   GuestUser.create!(name: Faker::Name.name, details: Faker::Lorem.paragraph, regular_user: RegularUser.second,
-                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
+                    from_date: Faker::Date.between(20.days.ago, Date.today), to_date: Faker::Date.between(Date.today, 20.days.from_now))
   GuestUser.create!(name: Faker::Name.name, details: Faker::Lorem.paragraph, regular_user: RegularUser.third,
-                    from_date: Faker::Date.between(50.days.ago, Date.today), to_date: Faker::Date.between(20.days.ago, 20.days.from_now))
+                    from_date: Faker::Date.between(20.days.ago, Date.today), to_date: Faker::Date.between(Date.today, 20.days.from_now))
 end
 
-Transaction.create!(food_type: 'D', date: '2016-02-20', price: 40, guest_transaction: true, guest_user: GuestUser.first)
-Transaction.create!(food_type: 'L', date: '2016-02-22', price: 30, guest_transaction: true, guest_user: GuestUser.first)
-Transaction.create!(food_type: 'D', date: '2016-02-23', price: 40, regular_user: RegularUser.third)
-Transaction.create!(food_type: 'B', date: '2016-02-23', price: 20, guest_transaction: true, guest_user: GuestUser.first)
-Transaction.create!(food_type: 'B', date: '2016-02-24', price: 70, regular_user: RegularUser.second)
-Transaction.create!(food_type: 'S', date: '2016-02-24', price: 45, regular_user: RegularUser.fifth)
-Transaction.create!(food_type: 'S', date: '2016-02-24', price: 45, regular_user: RegularUser.third)
+10.times do |_n|
+  Transaction.create!(food_type: %w(B D L S).sample, date: Faker::Date.between(20.days.ago, 20.days.from_now), price: rand(30..120), guest_transaction: true, guest_user_id: rand(1..12))
+  Transaction.create!(food_type: %w(B D L S).sample, date: Faker::Date.between(20.days.ago, 20.days.from_now), price: rand(30..120), guest_transaction: false, regular_user_id: rand(1..12))
+end
