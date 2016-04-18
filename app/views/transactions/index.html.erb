@@ -104,7 +104,13 @@
 	<% @transactions.each_with_index do |transaction, index| %>
 		<tr>	
 			<td><b><%= index+1 %></b></td>
-			<td><span class="glyphicon glyphicon-camera"></span></td>
+
+			<% if transaction.image.blank? %>
+				<td><%= image_tag '/default.jpg', size: "75x75" %></td>
+			<% else %>
+				<td><%= image_tag transaction.image.url, size: "75x75" %></td>
+			<% end %>
+
 			<td><%= transaction.date.strftime("%a %d %B, %Y") %></td>
 			<td><%= full_food_type(transaction.food_type) %></td>
 			<td><%= transaction.price %></td>
