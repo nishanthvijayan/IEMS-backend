@@ -1,4 +1,6 @@
 class Transaction < ActiveRecord::Base
+  mount_uploader :image, ProofImageUploader
+
   belongs_to :regular_user
   belongs_to :guest_user
 
