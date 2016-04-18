@@ -8,7 +8,7 @@ module Api
           post :create, transaction: {guest_transaction: false, regular_user_id: 1, food_type: 'D', price: 100, date: '29/3/2016'}
         end
         json = JSON.parse(response.body)
-        assert_equal json.keys, %w(id guest_user_id regular_user_id guest_transaction food_type date price image_url created_at updated_at)
+        assert_equal json.keys, %w(id guest_user_id regular_user_id guest_transaction food_type date price image created_at updated_at)
       end
 
       test 'displays error and does not save new transaction on submitting invalid/incomplete data' do

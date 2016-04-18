@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223101409) do
+ActiveRecord::Schema.define(version: 20160418094418) do
 
   create_table "guest_users", force: :cascade do |t|
     t.string   "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160223101409) do
     t.string   "food_type"
     t.date     "date"
     t.integer  "price"
-    t.string   "image_url"
+    t.string   "image"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
