@@ -23,6 +23,7 @@ gem 'cancancan', '~> 1.10'
 gem 'responders', '~> 2.0'
 gem 'd3_rails'
 gem 'active_model_serializers'
+gem 'carrierwave', '~> 0.10.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
