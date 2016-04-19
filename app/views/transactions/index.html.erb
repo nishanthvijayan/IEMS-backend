@@ -62,11 +62,11 @@
 <div class="panel  panel-default">
 	<div class="panel-heading">Stats</div>
 	<div class="panel-body row">
-		<div class="col-lg-4">
-			<div id="cal-heatmap"></div>
+		<div class="col-lg-4 col-lg-offset-0 col-md-6 col-md-offset-3">
+			<canvas id="dayChart" width="400" height="300"></canvas>
 		</div>
 
-		<div class="col-lg-2 col-lg-offset-1">
+		<div class="col-lg-2 col-lg-offset-1 col-md-6 col-md-offset-0">
 			<canvas id="guestChart"></canvas>
 			<ul class="legends pull-left">
 				<li id="legend-regular"></li>
@@ -74,7 +74,7 @@
 			</ul>
 		</div>
 
-		<div class="col-lg-2 col-lg-offset-1">
+		<div class="col-lg-2 col-lg-offset-1 col-md-6 col-md-offset-0">
 			<canvas id="foodChart"></canvas>
 			<ul class="legends pull-left">
 				<li id="legend-breakfast"></li>
@@ -130,29 +130,7 @@
 </div>
 
 <script type="text/javascript">
-
-	var parser = function(data) {
-		var stats = {};
-		for (var d in data) {
-			stats[data[d].date] = 1;
-		}
-		return stats;
-	};
-
-	var cal = new CalHeatMap();
-	cal.init({
-		data: window.location.href.replace(window.location.pathname,window.location.pathname+'.json'),
-		afterLoadData: parser,
-		domain: "month",
-		subDomain: "day",
-		range: 4,
-		itemName: ["entry", "entries"],
-		start: new Date(<%= 100.days.ago.to_i  * 1000 %>),
-		cellSize: 17,
-		domainGutter: 5,
-		domainMargin: 5
-	});
-
+	createDayChart();
 	createUserTypeChart();
 	createFoodTypeChart();
 </script>

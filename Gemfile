@@ -28,7 +28,6 @@ gem 'carrierwave', '~> 0.10.0'
 # gem 'unicorn'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-cal-heatmap'
   gem 'rails-assets-chartjs'
 end
 
