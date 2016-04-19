@@ -15,7 +15,6 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-switch
-//= require d3
 //= require chartjs
 //= require turbolinks
 //= require_tree .
