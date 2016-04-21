@@ -12,6 +12,16 @@ class Transaction < ActiveRecord::Base
   validates :price, presence: true,
                     numericality: true
 
+  validate :presence_of_proper_user_id
+
+  def presence_of_proper_user_id
+    if guest_transaction
+      errors.add(:guest_user_id, 'cannot be empty for a guest transaction') unless guest_user_id?
+    else
+      errors.add(:regular_user_id, 'cannot be empty for a regular transaction') unless regular_user_id?
+    end
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << %w(ID Guest_Transaction? Guest_Name Regular_User Food_Type Price Date)

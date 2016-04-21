@@ -27,4 +27,14 @@ class TransactionTest < ActiveSupport::TestCase
     @regular_transaction.price = nil
     assert_not @regular_transaction.valid?
   end
+
+  test 'regular_user_id should not be blank for regular transaction' do
+    @regular_transaction.regular_user_id = nil
+    assert_not @regular_transaction.valid?
+  end
+
+  test 'guest_user_id should not be blank for guest transaction' do
+    @regular_transaction.guest_transaction = true
+    assert_not @regular_transaction.valid?
+  end
 end
