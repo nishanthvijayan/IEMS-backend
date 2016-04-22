@@ -98,6 +98,9 @@
 				<th><%= sort_link(@q, :regular_user_name, 'Billed User', default_order: :asc) %></th>
 			<% end %>
 			<th><%= sort_link(@q, :guest_user_name, 'Guest Name', default_order: :asc) %></th>
+			<% if current_user.admin? || current_user.manager?%>
+				<th>Actions</th>
+			<% end %>
 		</tr>
 	</thead>
 	<tbody>
@@ -117,8 +120,21 @@
 			<% if current_user.admin? || current_user.manager?%>
 				<td><%= transaction.regular_user.name %></td>
 			<% end %>
-			<% if transaction.guest_transaction? %>
-				<td><%= transaction.guest_user.name %></td>
+
+			<td><%= transaction.guest_transaction? ? transaction.guest_user.name : '-' %></td>
+
+			<% if current_user.admin? || current_user.manager?%>
+				<td>
+					<div class="btn-group">
+					<%= link_to edit_transaction_path(transaction), class: 'btn btn-primary' do
+						content_tag :span, " ", class: "glyphicon glyphicon-pencil"
+					end %>
+
+					<%= link_to transaction_path(id: transaction.id), method: :delete, class: 'btn btn-danger', data: { confirm: "Delete transaction? Are you sure?"} do
+						content_tag :span, " ", class: "glyphicon glyphicon-trash"
+					end %>
+					</div>
+				</td>
 			<% end %>
 		</tr>
 	<% end %>

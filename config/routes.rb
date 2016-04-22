@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
     resources :transactions, :only => [:index]
   end
+  resources :transactions, :only => [:destroy, :edit, :update]
+
   resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update ]
 
   namespace :api, defaults: {format: 'json'} do

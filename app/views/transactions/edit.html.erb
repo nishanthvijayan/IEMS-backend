@@ -1,0 +1,11 @@
+<br><br><br>
+
+<div class="row col-md-6 col-md-offset-3 panel  panel-default">
+	<h1>Edit Record</h1>
+	<div class="panel-body">
+		<%= form_for(@transaction) do |f| %>
+			<%= render 'fields', f: f %>
+			<%= f.submit "Save Changes", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>

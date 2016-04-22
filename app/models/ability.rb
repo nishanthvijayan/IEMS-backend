@@ -57,5 +57,6 @@ class Ability
     signed_in_as_manager(user)
     can :manage, RegularUser
     can :manage, GuestUser
+    can :manage, Transaction
   end
 end

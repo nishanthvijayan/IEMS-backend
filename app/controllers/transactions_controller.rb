@@ -14,4 +14,28 @@ class TransactionsController < ApplicationController
       format.json { render json: @q.result(distinct: true), root: false}
     end
   end
+
+  def edit
+  end
+
+  def update
+    if @transaction.update_attributes(transaction_params)
+      flash[:success] = 'Record updated successfully'
+      redirect_to regular_user_transactions_path(regular_user_id: current_user.id)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @transaction.destroy
+    flash[:success] = 'Deleted successfully'
+    redirect_to regular_user_transactions_path(regular_user_id: current_user.id)
+  end
+
+  private
+
+  def transaction_params
+    params.require(:transaction).permit(:price, :food_type, :date)
+  end
 end
