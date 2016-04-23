@@ -19,3 +19,27 @@ $(document).ready(function(){
 	$.fn.bootstrapSwitch.defaults.offColor = 'danger';
 	$('.switch-checkbox').bootstrapSwitch();
 });
+
+$(function (){
+	$('.minimize-filters').click(function(){
+		$('.filters').toggle();
+		if ($('.minimize-filters').hasClass('glyphicon-minus')) {
+			$('.minimize-filters').removeClass('glyphicon-minus')
+			$('.minimize-filters').addClass('glyphicon-plus')
+		} else {
+			$('.minimize-filters').removeClass('glyphicon-plus')
+			$('.minimize-filters').addClass('glyphicon-minus')
+		}
+	});
+
+	$('.minimize-stats').click(function(){
+		$('.stats').toggle();
+		if ($('.minimize-stats').hasClass('glyphicon-minus')) {
+			$('.minimize-stats').removeClass('glyphicon-minus')
+			$('.minimize-stats').addClass('glyphicon-plus')
+		} else {
+			$('.minimize-stats').removeClass('glyphicon-plus')
+			$('.minimize-stats').addClass('glyphicon-minus')
+		}
+	});
+});

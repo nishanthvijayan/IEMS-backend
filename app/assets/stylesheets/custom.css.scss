@@ -106,3 +106,7 @@ input {
   display: inline-block;
   vertical-align: top;
 }
+
+.minimize-filters, .minimize-stats {
+	cursor: pointer;
+}
