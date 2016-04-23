@@ -42,4 +42,9 @@ $(function (){
 			$('.minimize-stats').addClass('glyphicon-minus')
 		}
 	});
+
+	$('.add-name').click(function(){
+		$('.name-list > #guest_user_name').first().clone().appendTo( ".name-list" );
+	})
+
 });

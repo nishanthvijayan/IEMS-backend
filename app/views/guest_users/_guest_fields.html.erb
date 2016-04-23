@@ -2,13 +2,19 @@
 <br>
 <label>Host</label>
 <label class="form-control">
-	<%= @guest_user.regular_user.name %>
+	<%= current_user.name %>
 </label>
 
 <br>
-<%= f.label :name %>
-<%= f.text_field :name, class: "form-control" %>
 
+<div class="name-list">
+  <%= f.label :name %><span class="glyphicon glyphicon-plus add-name pull-right" aria-hidden="true"></span>
+  <br><br>
+  <input class="form-control" name="guest_user[names][]" id="guest_user_name" type="text">
+</div>
+
+
+<br><br>
 <%= f.label :details %>
 <%= f.text_field :details, class: "form-control" %>
 
