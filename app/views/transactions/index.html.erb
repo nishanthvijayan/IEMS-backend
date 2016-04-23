@@ -98,7 +98,7 @@
 				<th><%= sort_link(@q, :regular_user_name, 'Billed User', default_order: :asc) %></th>
 			<% end %>
 			<th><%= sort_link(@q, :guest_user_name, 'Guest Name', default_order: :asc) %></th>
-			<% if current_user.admin? || current_user.manager?%>
+			<% if current_user.admin?%>
 				<th>Actions</th>
 			<% end %>
 		</tr>
@@ -123,7 +123,7 @@
 
 			<td><%= transaction.guest_transaction? ? transaction.guest_user.name : '-' %></td>
 
-			<% if current_user.admin? || current_user.manager?%>
+			<% if current_user.admin?%>
 				<td>
 					<div class="btn-group">
 					<%= link_to edit_transaction_path(transaction), class: 'btn btn-primary' do
