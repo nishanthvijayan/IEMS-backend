@@ -442,6 +442,7 @@ AllCops:
     - '**/config.ru'
   Exclude:
     - 'db/schema.rb'
+    - 'db/migrate/*'
     - 'vendor/bundle/**/*'
     - 'bundle/**/*'
     - 'config/**/*'
