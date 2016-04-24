@@ -2,6 +2,10 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 # All the current data is only for demo purposes and would obviously be removed before final deployment
 
+RegularUser.paper_trail_off!
+GuestUser.paper_trail_off!
+Transaction.paper_trail_off!
+
 RegularUser.create!(name: 'Nishanth Vijayan',
                     email: 'nishanth@gmail.com',
                     password: 'nishanthpassword',
@@ -54,3 +58,7 @@ end
 end
 
 SingleValue[:manager_password] = '123456789'
+
+RegularUser.paper_trail_on!
+GuestUser.paper_trail_on!
+Transaction.paper_trail_on!

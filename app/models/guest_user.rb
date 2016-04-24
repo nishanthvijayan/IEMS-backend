@@ -1,4 +1,6 @@
 class GuestUser < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :regular_user
   has_many :transactions
 

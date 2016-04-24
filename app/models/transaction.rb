@@ -1,4 +1,6 @@
 class Transaction < ActiveRecord::Base
+  has_paper_trail
+
   mount_uploader :image, ProofImageUploader
 
   belongs_to :regular_user

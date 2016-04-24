@@ -1,4 +1,6 @@
 class RegularUser < ActiveRecord::Base
+  has_paper_trail
+
   has_many :guest_users
   has_many :transactions
 

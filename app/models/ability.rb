@@ -58,5 +58,6 @@ class Ability
     can :manage, RegularUser
     can :manage, GuestUser
     can :manage, Transaction
+    can :manage, Version
   end
 end
