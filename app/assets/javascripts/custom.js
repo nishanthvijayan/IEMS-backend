@@ -45,6 +45,15 @@ $(function (){
 
 	$('.add-name').click(function(){
 		$('.name-list > #guest_user_name').first().clone().appendTo( ".name-list" );
-	})
+	});
+
+	$('.show-changeset').click(function(){
+		if ($(this).text() == "View Changes"){
+			$(this).text("Hide Changes");
+		}else {
+			$(this).text("View Changes");
+		}
+		$('.changeset-' + this.id).toggle();
+	});
 
 });

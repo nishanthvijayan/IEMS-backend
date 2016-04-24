@@ -1,0 +1,38 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>  
+      <th class="active">Change</th>
+      
+      <% if version.event != 'create' %>
+        <th class="danger">Old Values</th>
+      <% end %>
+      
+      <% if version.event != 'destroy' %>
+        <th class="success">New Values</th>
+      <% end %>
+    </tr>
+  </thead>
+  
+  <% if version.event == 'update' || version.event == 'create' %>
+
+    <% version.item_type.constantize.find(version.item_id).versions.find(version.id).changeset.each do |key, value| %>
+      <tr>
+        <td class="active"><%= key %></td>
+        <% if version.event == 'update' %>
+          <td class="danger"><%= value[0].nil? ?  '-' : value[0] %></td>
+        <% end %>
+        <td class="success"><%= value[1].nil? ?  '-' : value[1] %></td>
+      </tr>
+    <% end %>
+
+  <% else %>
+
+    <%  PaperTrail::Version.find(version.id).reify.attributes.each do |key,value| %>
+      <tr>
+        <td class="active"><%= key %></td>
+        <td class="danger"><%= value.nil? ?  '-' : value %></td>
+      </tr>
+    <% end %>
+
+  <% end %>  
+</table>
