@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :transactions, :only => [:destroy, :edit, :update]
 
   resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update ]
+  get 'history' => 'versions#index'
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
