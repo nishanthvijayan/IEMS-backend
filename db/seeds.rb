@@ -57,8 +57,6 @@ end
   Transaction.create!(food_type: %w(B D L S).sample, date: Faker::Date.between(20.days.ago, 20.days.from_now), price: rand(30..120), guest_transaction: false, regular_user_id: rand(1..12))
 end
 
-SingleValue[:manager_password] = '123456789'
-
 RegularUser.paper_trail_on!
 GuestUser.paper_trail_on!
 Transaction.paper_trail_on!
