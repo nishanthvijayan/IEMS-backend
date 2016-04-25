@@ -59,5 +59,6 @@ class Ability
     can :manage, GuestUser
     can :manage, Transaction
     can :manage, Version
+    can :manage, Client
   end
 end
