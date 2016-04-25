@@ -33,6 +33,10 @@ class TransactionsController < ApplicationController
     redirect_to regular_user_transactions_path(regular_user_id: current_user.id)
   end
 
+  def getimage
+    send_file @transaction.image.path, :x_sendfile=>true, disposition: 'inline'
+  end
+
   private
 
   def transaction_params

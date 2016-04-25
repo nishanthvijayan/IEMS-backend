@@ -44,6 +44,7 @@ class Ability
     can :manage, RegularUser, id: user.id
     can :manage, GuestUser, regular_user_id: user.id
     can :read, Transaction, regular_user_id: user.id
+    can :getimage, Transaction, regular_user_id: user.id
   end
 
   def signed_in_as_manager(user)
@@ -51,6 +52,7 @@ class Ability
     can :read, GuestUser
     can :read, RegularUser
     can :read, Transaction
+    can :getimage, Transaction
   end
 
   def signed_in_as_admin(user)

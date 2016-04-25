@@ -29,4 +29,6 @@ Rails.application.routes.draw do
       post 'authenticate' => 'sessions#create'
     end
   end
+
+  get "/uploads/transactions/:id/:basename.:extension" => "transactions#getimage"
 end
