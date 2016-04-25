@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424120117) do
+ActiveRecord::Schema.define(version: 20160425132515) do
 
   create_table "guest_users", force: :cascade do |t|
     t.string   "name"
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 20160424120117) do
   create_table "regular_users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.boolean  "admin"
-    t.boolean  "manager"
+    t.boolean  "admin",           default: false
+    t.boolean  "manager",         default: false
     t.string   "password_digest"
     t.string   "image_url"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "single_values", force: :cascade do |t|
@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 20160424120117) do
   create_table "transactions", force: :cascade do |t|
     t.integer  "guest_user_id"
     t.integer  "regular_user_id"
-    t.boolean  "guest_transaction"
+    t.boolean  "guest_transaction", default: false
     t.string   "food_type"
     t.date     "date"
     t.integer  "price"
     t.string   "image"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "versions", force: :cascade do |t|
