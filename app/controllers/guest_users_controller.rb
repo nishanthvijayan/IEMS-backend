@@ -1,5 +1,6 @@
 class GuestUsersController < ApplicationController
   load_and_authorize_resource
+  before_action :upcoming_guest, only: [:update, :destroy]
 
   def index
     @q = GuestUser.accessible_by(current_ability).ransack(params[:q])
@@ -37,10 +38,7 @@ class GuestUsersController < ApplicationController
   end
 
   def update
-    if Date.parse(guest_user_params[:from_date]) <= Date.current
-      flash[:danger] = 'Updating details of guests is allowed only for guests who have not reached the campus yet'
-      redirect_to guest_users_path
-    elsif @guest_user.update_attributes(guest_user_params)
+    if @guest_user.update_attributes(guest_user_params)
       flash[:success] = 'Guest details updated successfully'
       redirect_to guest_users_path
     else
@@ -48,7 +46,19 @@ class GuestUsersController < ApplicationController
     end
   end
 
+  def destroy
+    @guest_user.destroy
+    flash[:success] = "#{@guest_user.name}'s booking was deleted successfully"
+    redirect_to guest_users_path
+  end
+
   private
+
+  def upcoming_guest
+    return if @guest_user.from_date > Date.current
+    flash[:danger] = 'Bookings before current date cannot be modified/deleted'
+    redirect_to guest_users_path
+  end
 
   def guest_user_params
     params.require(:guest_user).permit(:name, :from_date, :to_date, :details)

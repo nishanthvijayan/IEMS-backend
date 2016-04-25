@@ -54,6 +54,7 @@
 				<th><%= sort_link(@q, :regular_user_name, 'Host', default_order: :asc) %></th>
 			<% end %>
 			<th>Details</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -67,6 +68,19 @@
 				<td><%= guest_user.regular_user.name %></td>
 			<% end %>
 			<td><%= truncate(guest_user.details) %></td>
+			<td>
+				<% if guest_user.from_date > Date.current %>
+					<div class="btn-group">
+					<%= link_to edit_guest_user_path(guest_user), class: 'btn btn-primary btn-sm' do
+						content_tag :span, " ", class: "glyphicon glyphicon-pencil"
+					end %>
+
+					<%= link_to guest_user_path(guest_user), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Delete Guest Booking?"} do
+						content_tag :span, " ", class: "glyphicon glyphicon-trash"
+					end %>
+					</div>
+				<% end %>
+			</td>
 		</tr>
 	<% end %>
 	</tbody>

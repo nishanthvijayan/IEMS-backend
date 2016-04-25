@@ -4,7 +4,30 @@
 	<h2 class="center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Edit Guest Booking</h2>
 	<div class="panel-body">
 		<%= form_for(@guest_user) do |f| %>
-			<%= render 'guest_fields', f: f %>		
+			<%= render 'shared/error_messages',  object: @guest_user %>
+                  <br>
+                  <label>Host</label>
+                  <label class="form-control">
+                    <%= current_user.name %>
+                  </label>
+                  
+                  <br>
+
+                    <%= f.label :name %>
+                    <%= f.text_field :name, class: "form-control" %>
+
+                  <br><br>
+                  <%= f.label :details %>
+                  <%= f.text_field :details, class: "form-control" %>
+
+                  <div class="form-group">
+                    <div class="input-daterange input-group" id="datepicker">
+                      <%= f.text_field :from_date, class: "input-sm form-control", placeholder: "From Date" %>
+                      <span class="input-group-addon">to</span>
+                      <%= f.text_field :to_date, class: "input-sm form-control", placeholder: "To Date" %>
+                    </div>
+                  </div>
+                  <br>		
 			<%= f.submit "Save Changes", class: "btn btn-primary" %>
 		<% end %>
 	</div>

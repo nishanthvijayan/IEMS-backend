@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :transactions, :only => [:destroy, :edit, :update]
 
-  resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update ]
+  resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update, :destroy ]
   get 'history' => 'versions#index'
 
   namespace :api, defaults: {format: 'json'} do
