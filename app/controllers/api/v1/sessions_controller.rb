@@ -1,6 +1,9 @@
 module Api
   module V1
     class SessionsController < ApplicationController
+      protect_from_forgery with: :null_session
+      respond_to :json
+
       def create
         client_password = params[:manager_password]
         client_name = params[:client_id]
