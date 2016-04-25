@@ -3,7 +3,7 @@ class GuestUsersController < ApplicationController
   before_action :upcoming_guest, only: [:update, :destroy]
 
   def index
-    @q = GuestUser.accessible_by(current_ability).ransack(params[:q])
+    @q = GuestUser.accessible_by(current_ability).order('from_date DESC').ransack(params[:q])
     @guest_users = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @regular_users = RegularUser.accessible_by(current_ability)
 

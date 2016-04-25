@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @q = Transaction.accessible_by(current_ability).ransack(params[:q])
+    @q = Transaction.accessible_by(current_ability).order('date DESC').ransack(params[:q])
     @transactions = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @guest_users = GuestUser.accessible_by(current_ability)
     @regular_users = RegularUser.accessible_by(current_ability)
