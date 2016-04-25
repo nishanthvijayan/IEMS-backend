@@ -1,20 +1,11 @@
-$(document).ready(function(){
-	$('.input-daterange').datepicker({
+$(document).on('page:change', function () {
+	$('.input-daterange, .datepicker').datepicker({
 	    orientation: "bottom auto",
 	    format: 'dd/mm/yyyy',
 	    todayBtn: "linked",
 	    clearBtn: true
 	});
 
-	$('.datepicker').datepicker({
-	    orientation: "bottom auto",
-	    format: 'yyyy-mm-dd',
-	    todayBtn: "linked",
-	    clearBtn: true
-	});
-});
-
-$(function (){
 	$('.minimize-filters').click(function(){
 		$('.filters').toggle();
 		if ($('.minimize-filters').hasClass('glyphicon-minus')) {
