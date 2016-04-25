@@ -8,7 +8,7 @@
         <% if version.item_type == 'Transaction' %>
           <%= transaction_change_desc(version.event, version.whodunnit) %>
         <% elsif version.item_type == 'GuestUser' %>
-          <%= guest_change_desc(version.item_id, version.event, version.whodunnit) %>
+          <%= guest_change_desc(version.event, version.whodunnit) %>
         <% elsif version.item_type == 'RegularUser' %>
           <%= user_change_desc(version.item_id, version.event, version.whodunnit) %>
         <% end %>
@@ -18,9 +18,17 @@
         </div>
 
         <br><br>
-        <%= content_tag :div, class: "changeset changeset-#{version.id}" do
-          render 'diff', version: version
-        end %>
+
+        <% unless version.event != 'destroy' && version.item_type.constantize.where(id: version.item_id).empty? %>
+          <%= content_tag :div, class: "changeset changeset-#{version.id}" do
+            render 'diff', version: version
+          end %>
+        <% else %>
+          <%= content_tag :div, class: "changeset changeset-#{version.id}" do
+            content_tag :span, 'This item has been deleted'
+          end %>
+        <% end %>
+
         <hr>
 
       </div>
