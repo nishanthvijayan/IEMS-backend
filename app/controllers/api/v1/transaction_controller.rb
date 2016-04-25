@@ -2,6 +2,7 @@ module Api
   module V1
     class TransactionController < ApplicationController
       protect_from_forgery with: :null_session
+      before_action :authenticate_with_token
       respond_to :json
 
       def create
@@ -16,6 +17,15 @@ module Api
       end
 
       private
+
+      def current_client
+        @current_client ||= Client.find_by(auth_token: params['access_token'])
+      end
+
+      def authenticate_with_token
+        render json: { errors: 'Not Authenticated' },
+               status: :unauthorized unless current_client.present?
+      end
 
       def transaction_params
         allowed_params = params.require(:transaction).permit(:guest_transaction, :guest_user_id, :regular_user_id, :food_type, :price, :date, :image)

@@ -4,19 +4,20 @@ module Api
   module V1
     class SessionsControllerTest < ActionController::TestCase
       def setup
-        SingleValue[:manager_password] = '12345'
+        @client = Client.create(name: 'testclient', password: '123456789')
       end
 
-      test 'correct manager_password returns success response' do
-        post :auth, manager_password: '12345'
+      test 'valid client details returns client details' do
+        post :create, client_id: 'testclient', manager_password: '123456789'
         json = JSON.parse(response.body)
-        assert_equal json['result'], 'Success'
+        puts json
+        assert_equal json['client']['name'], 'testclient'
       end
 
-      test 'incorrect manager_password returns error response' do
-        post :auth, manager_password: '1233546'
+      test 'invalid client details does not returns client details' do
+        post :create, client_id: 'testclient', manager_password: 'abcdefghijlkm'
         json = JSON.parse(response.body)
-        assert_equal json['errors'], 'Invalid password'
+        assert_equal json['errors'], 'Invalid client_id or password'
       end
     end
   end

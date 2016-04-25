@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'users' => 'users#index'
       post 'transaction' => 'transaction#create'
-      post 'authenticate' => 'sessions#auth'
+      post 'authenticate' => 'sessions#create'
     end
   end
 end
