@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root "sessions#new"
 
   get 'signup' => 'regular_users#new'
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :guest_users,   path: 'guests', :only => [ :index, :new, :create, :edit, :update, :destroy ]
   get 'history' => 'versions#index'
+
+  resources :clients, :except => [:show]
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do

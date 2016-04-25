@@ -7,6 +7,7 @@
 					<% if current_user.admin? %>
 						<li><%= link_to "Manage Users", regular_users_path, :class => "nav-links" %></li>
 						<li><%= link_to "View Changes", history_path, :class => "nav-links" %></li>
+						<li><%= link_to "Manage Clients", clients_path, :class => "nav-links" %></li>
 					<% end %>
 					<li><%= link_to "View Logs", regular_user_transactions_path(regular_user_id: current_user.id), :class => "nav-links" %></li>
 					<li><%= link_to "View Bookings",  guest_users_path, :class => "nav-links"  %></li>
