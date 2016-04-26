@@ -10,6 +10,7 @@ module Api
       test 'valid client details returns client details' do
         post :create, client_id: 'testclient', manager_password: '123456789'
         json = JSON.parse(response.body)
+        assert_equal json['client'].keys, %w(id name auth_token)
         assert_equal json['client']['name'], 'testclient'
       end
 
