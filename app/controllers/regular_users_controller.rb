@@ -33,7 +33,7 @@ class RegularUsersController < ApplicationController
   def update
     if @regular_user.update_attributes(regular_user_params)
       flash[:success] = 'Profile updated successfully'
-      redirect_to regular_user_transactions_path(regular_user_id: @regular_user.id)
+      redirect_to regular_user_transactions_path(current_user)
     else
       render 'edit'
     end
