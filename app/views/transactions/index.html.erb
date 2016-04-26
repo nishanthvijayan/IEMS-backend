@@ -22,7 +22,7 @@
 
 		<%= search_form_for [current_user, @q], :html => { :class => "form-inline" } do |f|%>
 			
-			<div class="form-group col-lg-3 col-md-3">
+			<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
 				<div class="input-daterange input-group" id="datepicker">
 
 				<%= f.text_field :date_gteq, class:"input-sm form-control", id: 'start', placeholder: 'Start Date' %>
@@ -31,26 +31,26 @@
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-3">
+			<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
 				<div class="input-group select-group">
 					<%= f.select :regular_user_id_eq, options_from_collection_for_select(@regular_users, 'id', 'name'), { :include_blank => 'All Users' }, { :class => 'form-control' } %>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-3">
+			<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
 				<div class="input-group select-group">
 					<%= f.select :guest_user_id_eq, options_from_collection_for_select(@guest_users, 'id', 'name'), { :include_blank => 'All Guests' }, { :class => 'form-control' } %>
 				</div>
 			</div>
 			
-			<div class="checkbox col-lg-3 col-md-3">
+			<div class="checkbox col-lg-3 col-md-3 col-sm-12 col-xs-12">
 				<label><%= check_box_tag('q[food_type_eq_any][]', 'B') %>Breakfast</label>
 				<label><%= check_box_tag('q[food_type_eq_any][]', 'L') %>Lunch</label>
 				<label><%= check_box_tag('q[food_type_eq_any][]', 'D') %>Dinner</label>
 				<label><%= check_box_tag('q[food_type_eq_any][]', 'S') %>Special</label>
 		  	</div>
 
-			<div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-5">
+			<div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-12">
 				<%= f.submit 'Search', class: 'btn btn-success' %>
 			</div>
 
