@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425170059) do
+ActiveRecord::Schema.define(version: 20160426104731) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160425170059) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "clients", ["auth_token"], name: "index_clients_on_auth_token"
 
   create_table "guest_users", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160425170059) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
+
+  add_index "regular_users", ["email"], name: "index_regular_users_on_email"
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "guest_user_id"
