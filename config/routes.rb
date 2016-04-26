@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :regular_users, path: 'users',   :only => [ :index, :edit, :update, :create, :destroy ] do
 
     member do
-      patch 'manage'
+      patch 'authorize'
     end
 
     resources :transactions, :only => [:index]

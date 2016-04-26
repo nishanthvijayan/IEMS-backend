@@ -13,7 +13,7 @@
       <hr>
       <h3 class="center">Edit Privileges</h3>
       <div class="panel-body">
-        <%= form_for @regular_user, url: manage_regular_user_path(@regular_user), method: :patch do |f|  %>
+        <%= form_for @regular_user, url: authorize_regular_user_path(@regular_user), method: :patch do |f|  %>
           <%= render 'shared/error_messages', object: @regular_user %>
           <label class="col-md-6 center input-lg"><%= f.check_box(:admin) %>Admin</label>
           <label class="col-md-6 center input-lg"><%= f.check_box(:manager) %>Manager</label>
