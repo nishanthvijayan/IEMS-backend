@@ -18,7 +18,7 @@
 
 		<%= search_form_for @q, :html => { :class => "form-inline" } do |f|%>
 			
-			<div class="form-group col-lg-4 col-md-3">
+			<div class="form-group col-lg-4 col-md-3 col-sm-4">
 				<div class="input-daterange input-group" id="datepicker">
 				<%= f.text_field :from_date_gteq, class:"input-sm form-control", id: 'start', placeholder: 'Came after' %>
 				<span class="input-group-addon"> - </span>
@@ -26,15 +26,15 @@
 				</div>
 			</div>
 
-			<div class="col-lg-3 col-md-3">
+			<div class="col-lg-3 col-md-3 col-sm-4">
 					<%= f.select :regular_user_id_eq, options_from_collection_for_select(@regular_users, 'id', 'name'), { :include_blank => 'All Users' }, { :class => 'form-control' } %>
 			</div>
 
-			<div class="col-lg-3 col-md-3">
+			<div class="col-lg-3 col-md-3 col-sm-4">
 					<%= f.text_field :name_cont, class: 'form-control', placeholder: "Search by Guest's Name" %>
 			</div>
 
-			<div class="col-lg-2 col-md-3">
+			<div class="col-lg-2 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-4">
 				<%= f.submit 'Search', class: 'btn btn-success' %>
 			</div>
 
