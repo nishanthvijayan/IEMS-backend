@@ -53,6 +53,7 @@ class Ability
     can :read, RegularUser
     can :read, Transaction
     can :getimage, Transaction
+    can :manage, Client
   end
 
   def signed_in_as_admin(user)
